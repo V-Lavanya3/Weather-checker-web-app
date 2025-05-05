@@ -1,10 +1,9 @@
-const API_KEY = '1cde13fa70d4e39f70fb61c72a41a72f'; 
 
 document.addEventListener('DOMContentLoaded', loadFavorites);
 
 function weatherInfo() {
-  const city1 = document.getElementById('city1').value.trim();
-  const city2 = document.getElementById('city2').value.trim();
+  const city1 = document.getElementById('city1').value;
+  const city2 = document.getElementById('city2').value;
   const weatherContainer = document.getElementById('weatherContainer');
   weatherContainer.innerHTML = '';
 
@@ -13,7 +12,7 @@ function weatherInfo() {
 }
 
 function fetchWeather(city) {
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=1cde13fa70d4e39f70fb61c72a41a72f&units=metric`)
     .then(res => {
       if (!res.ok) throw new Error("City not found");
       return res.json();
@@ -34,7 +33,7 @@ function displayWeather(data) {
         <p class="card-text">🌡 Temp: ${data.main.temp} °C</p>
         <p class="card-text">💧 Humidity: ${data.main.humidity}%</p>
         <p class="card-text">🌤 Condition: ${data.weather[0].main}</p>
-        <button class="btn btn-outline-success btn-sm" onclick="saveCity('${data.name}')">Save</button>
+        <button class="btn btn-outline-success btn-sm" onclick="saveCity('${data.name}')">Add to favourites</button>
       </div>
     </div>
   `;
